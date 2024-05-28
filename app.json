@@ -1,5 +1,9 @@
 {
   "expo": {
+    "experiments": {
+      "tsconfigPaths": false,
+      
+    },
     "name": "Dave",
     "slug": "Dave",
     "version": "1.0.0",

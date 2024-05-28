@@ -3,11 +3,11 @@ import React, { useEffect, useState } from 'react'
 import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { auth } from '../firebase'
 import DaveInput from '../components/DaveInput'
-import { signIn } from '../configuration/configurationText'
-import { lockIcon, mailIcon } from '../../public/images/images'
+import { confirmPassword, createAcountTitle, signIn } from '../configuration/configurationText'
+import { mailIcon, newLockIcon } from '../../public/images/images'
 
 
-const LoginScreen = () => {
+const registerScreen = () => {
   // const [email, setEmail] = useState('')
   // const [password, setPassword] = useState('')
 
@@ -46,24 +46,38 @@ const LoginScreen = () => {
   return (
     <KeyboardAvoidingView
       style={styles.container}
-    
     >
-    <View style={styles.header}>
-    <Text style={styles.title}>hello!</Text>
-    </View>
     <View style={styles.contentContainer} >
+
+    <Text style={styles.title}>{createAcountTitle}</Text>
       <View style={styles.inputContainer}>
       <DaveInput
-        placeholder="E-Mail"
-        leftImage={lockIcon}
+        placeholder="Full Name"
+        // leftImage={lockIconIcon}
         onChangeText={text => setEmail(text)}
         // value={email}
         />
 
       <DaveInput
+        placeholder="E-mail"
+        // leftImage= {newLockIcon}
+        // rightImage= {mailIcon}
+        onChangeText={text => setPassword(text)}
+        // value={E-mail} 
+        />
+
+<DaveInput
         placeholder="Password"
-        leftImage= {lockIcon}
-        rightImage= {mailIcon}
+        // leftImage= {lockIconIcon}
+        // rightImage= {mailIcon}
+        onChangeText={text => setPassword(text)}
+        // value={password} 
+        />
+
+<DaveInput
+        placeholder={confirmPassword}
+        // leftImage= {lockIconIcon}
+        // rightImage= {""}
         onChangeText={text => setPassword(text)}
         // value={password} 
         />
@@ -75,7 +89,7 @@ const LoginScreen = () => {
           // onPress={handleLogin}
           style={styles.button}
         >
-          <Text style={[styles.buttonText]}>Login</Text>
+          <Text style={[styles.buttonText]}>{signUpText}</Text>
         </TouchableOpacity>
         </View>
     </View>
@@ -106,26 +120,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     
   },
-  header:{
-    
-    flex:1,
-    justifyContent: 'spaceBeteenֶ',
-    alignItems: 'center',
-  },
   title:{   
     marginBottom:20,
     color: 'white',
     fontSize: 48,
     fontWeight: '400',
     textTransform: 'uppercase',
-  
-    // wordWrap: 'break-word',
   },
   inputContainer: {
-    // flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fff',
+    justifyContent: 'space-between',
+    width: '200'
   },
   buttonContainer: {
     flex:1,
