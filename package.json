@@ -12,7 +12,17 @@
   "dependencies": {
     "@react-navigation/native": "^6.1.7",
     "@react-navigation/native-stack": "^6.9.13",
-    "expo": "^51.0.8",
+    "expo": "~51.0.9",
+    "expo-dev-client": "~4.0.15",
+    "expo-firebase-analytics": "^8.0.0",
+    "expo-firebase-app": "^2.0.0",
+    "expo-firebase-auth": "^2.0.0",
+    "expo-firebase-crashlytics": "^2.0.0",
+    "expo-firebase-database": "^2.0.0",
+    "expo-firebase-firestore": "^2.0.0",
+    "expo-firebase-functions": "^2.0.0",
+    "expo-firebase-messaging": "^2.0.0",
+    "expo-firebase-storage": "^2.0.0",
     "expo-status-bar": "~1.12.1",
     "firebase": "^10.12.2",
     "react": "18.2.0",
@@ -21,9 +31,9 @@
     "react-native-maps": "1.14.0",
     "react-native-safe-area-context": "4.10.1",
     "react-native-screens": "3.31.1",
-    "react-native-svg": "^15.3.0",
+    "react-native-svg": "^15.2.0",
     "react-native-web": "~0.19.10",
-    "require": "^2.4.20"
+    "require": "^0.4.4"
   },
   "devDependencies": {
     "@babel/core": "^7.24.0",
