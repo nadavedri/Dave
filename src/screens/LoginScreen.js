@@ -4,7 +4,7 @@ import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, Vi
 import { auth } from '../firebaseConfig'
 import DaveInput from '../components/DaveInput'
 import { signIn } from '../configuration/configurationText'
-import { lockIcon, mailIcon } from '../../public/images/images'
+import MailIcon from '../../public/icons/mail.svg'
 
 
 const LoginScreen = () => {
@@ -42,123 +42,84 @@ const LoginScreen = () => {
   //     })
   //     .catch(error => alert(error.message))
   // }
-  const imagesInput = {id: "Vector", d: "M19.2308 0H0.769231C0.565218 0 0.369561 0.0790178 0.225302 0.21967C0.0810437 0.360322 0 0.551088 0 0.75V13.5C0 13.8978 0.162087 14.2794 0.450605 14.5607C0.739122 14.842 1.13044 15 1.53846 15H18.4615C18.8696 15 19.2609 14.842 19.5494 14.5607C19.8379 14.2794 20 13.8978 20 13.5V0.75C20 0.551088 19.919 0.360322 19.7747 0.21967C19.6304 0.0790178 19.4348 0 19.2308 0ZM10 7.98281L2.74712 1.5H17.2529L10 7.98281ZM7.18365 7.5L1.53846 12.5447V2.45531L7.18365 7.5ZM8.32212 8.51719L9.47596 9.55312C9.61788 9.68014 9.80351 9.75062 9.99615 9.75062C10.1888 9.75062 10.3744 9.68014 10.5163 9.55312L11.6702 8.51719L17.2471 13.5H2.74712L8.32212 8.51719ZM12.8163 7.5L18.4615 2.45438V12.5456L12.8163 7.5Z", fill: "#231F20"}
   return (
-    <KeyboardAvoidingView
-      style={styles.container}
-    
-    >
-    <View style={styles.header}>
-    <Text style={styles.title}>hello!</Text>
-    </View>
-    <View style={styles.contentContainer} >
-      <View style={styles.inputContainer}>
-      <DaveInput
-        placeholder="E-Mail"
-        leftImage={lockIcon}
-        onChangeText={text => setEmail(text)}
-        imagePath = {imagesInput}
-        // value={email}
+    <KeyboardAvoidingView style={styles.container}>
+      <Text style={styles.title}>hello!</Text>
+      <View style={styles.inputs}>
+        <DaveInput
+          placeholder="E-Mail"
+          onChangeText={(text) => setEmail(text)}
+          Icon={MailIcon}
+          isSecure={true}
         />
-
-      {/* <DaveInput
-        placeholder="Password"
-        leftImage= {lockIcon}
-        rightImage= {mailIcon}
-        onChangeText={text => setPassword(text)}
-        imagePath = {imagesInput}
-        
-        // value={password} 
-        /> */}
-        
       </View>
 
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          // onPress={handleLogin}
-          style={styles.button}
-        >
-          <Text style={[styles.buttonText]}>Login</Text>
-        </TouchableOpacity>
-        </View>
-    </View>
-     
+      <TouchableOpacity
+        style={styles.LoginButtonContainer}
+        // onPress={handleLogin}
+      >
+        <Text style={[styles.buttonText]}>Login</Text>
+      </TouchableOpacity>
 
-        <TouchableOpacity style={styles.footer}
-          // onPress={handleSignUp}
-          >
-          <Text style={styles.buttonOutlineText}>{signIn}</Text>
-        </TouchableOpacity>
-      
+      <TouchableOpacity
+        style={styles.footer}
+        // onPress={handleSignUp}
+      >
+        <Text style={styles.footerButton}>{signIn}</Text>
+      </TouchableOpacity>
     </KeyboardAvoidingView>
-  )
+  );
 }
 
 export default LoginScreen
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor:'#0BC1E7',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
+    display: "flex",
+    width: "100%",
+    height: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#0BC1E7",
   },
-  contentContainer:{
-    display:'flex',
-    marginTop: 100,
-    alignItems: 'center',
-  },
-  header:{
-    
-    flex:1,
-    justifyContent: 'spaceBeteenֶ',
-    alignItems: 'center',
-  },
-  title:{   
-    marginBottom:20,
-    color: 'white',
+
+  title: {
+    marginBottom: 20,
+    color: "white",
     fontSize: 48,
-    fontWeight: '400',
-    textTransform: 'uppercase',
-    
-    // wordWrap: 'break-word',
+    fontWeight: "400",
+    textTransform: "uppercase",
   },
-  inputContainer: {
-    // flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    width: '80%',
-    borderRadius: 10
+
+  inputs: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    marginTop: 30,
+    justifyContent: "space-between",
+    height: 200,
   },
-  buttonContainer: {
-    flex:1,
-    width: '60%',
+
+  LoginButtonContainer: {
     marginTop: 40,
-  },
-  button: {
-    backgroundColor: '#163F6B',
     padding: 15,
+    backgroundColor: "#163F6B",
     borderRadius: 10,
-    
-    },
-  buttonOutline: {
-    backgroundColor: 'white',
-    marginTop: 5,
-    borderColor: '#163F6B',
-    borderWidth: 2,
   },
+
   buttonText: {
-    color: 'white',
-    fontWeight: '700',
+    color: "white",
+    fontWeight: "700",
     fontSize: 16,
   },
-  buttonOutlineText: {
-    color: '#163F6B',
-    fontWeight: '700',
-    fontSize: 16,
-    
+
+  footer: {
+    marginTop:170
   },
-  footer:{height: 100,},
-})
+  
+  footerButton: {
+    color: "#163F6B",
+    fontWeight: "700",
+    fontSize: 16,
+  },
+});
