@@ -1,26 +1,38 @@
-import { StyleSheet, View, TextInput, Image } from "react-native";
-import EyeIcon from '../../public/icons/eye.svg'
+import { StyleSheet, View, TextInput } from "react-native";
+import EyeIcon from '../../public/icons/eye.svg';
+import ClosedEyeIcon from '../../public/icons/closedEye.svg';
+import { useCallback, useState } from "react";
 
-const DaveInput = ({ placeholder, value, onChangeText,Icon, isSecure }) => {
+const DaveInput = ({ placeholder, value, onChangeText,Icon, iconSize = 20, isSecure }) => {
+  const [isHidden, setIsHidden] = useState(isSecure);
+
+  const toggle = useCallback(() => {
+    setIsHidden((prev) => !prev);
+  }, []);
+
   return (
     <View style={styles.viewContainer}>
       <View style={styles.rightSvg}>
-        <Icon width={20} height={20} />
+        <Icon width={iconSize} height={iconSize} />
       </View>
       <TextInput
         placeholder={placeholder}
         value={value}
         onChangeText={onChangeText}
         style={styles.input}
-        secureTextEntry={isSecure}
+        secureTextEntry={isSecure && isHidden}
       />
       {isSecure && (
         <View style={styles.leftSvg}>
-          <EyeIcon width={25} height={25} />
+          {isHidden ? (
+            <ClosedEyeIcon width={28} height={28} onClick={toggle} />
+          ) : (
+            <EyeIcon width={28} height={28} onClick={toggle} />
+          )}
         </View>
       )}
     </View>
-  )
+  );
 };
 
 export default DaveInput;
