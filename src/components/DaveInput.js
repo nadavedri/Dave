@@ -1,4 +1,4 @@
-import { StyleSheet, View, TextInput } from "react-native";
+import { StyleSheet, View, TextInput ,TouchableOpacity} from "react-native";
 import EyeIcon from '../../public/icons/eye.svg';
 import ClosedEyeIcon from '../../public/icons/closedEye.svg';
 import { useCallback, useState } from "react";
@@ -23,13 +23,13 @@ const DaveInput = ({ placeholder, value, onChangeText,Icon, iconSize = 20, isSec
         secureTextEntry={isSecure && isHidden}
       />
       {isSecure && (
-        <View style={styles.leftSvg}>
+        <TouchableOpacity onPress={toggle} style={styles.leftSvg}>
           {isHidden ? (
-            <ClosedEyeIcon width={28} height={28}  />
+            <ClosedEyeIcon width={28} height={28} />
           ) : (
             <EyeIcon width={28} height={28} />
           )}
-        </View>
+        </TouchableOpacity>
       )}
     </View>
   );

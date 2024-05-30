@@ -1,4 +1,4 @@
-import React from 'react'
+import React ,{useState} from 'react'
 import { KeyboardAvoidingView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import DaveInput from '../components/DaveInput'
 import { signIn } from '../configuration/configurationText'
@@ -7,8 +7,8 @@ import LockIcon from '../../public/icons/lock.svg'
 
 
 const LoginScreen = () => {
-  // const [email, setEmail] = useState('')
-  // const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   // const navigation = useNavigation()
 
@@ -56,7 +56,7 @@ const LoginScreen = () => {
         <View style={styles.input}>
           <DaveInput
             placeholder="Password"
-            onChangeText={(text) => setEmail(text)}
+            onChangeText={(text) => setPassword(text)}
             Icon={LockIcon}
             isSecure={true}
           />
