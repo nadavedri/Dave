@@ -25,9 +25,9 @@ const DaveInput = ({ placeholder, value, onChangeText,Icon, iconSize = 20, isSec
       {isSecure && (
         <View style={styles.leftSvg}>
           {isHidden ? (
-            <ClosedEyeIcon width={28} height={28} onClick={toggle} />
+            <ClosedEyeIcon width={28} height={28}  />
           ) : (
-            <EyeIcon width={28} height={28} onClick={toggle} />
+            <EyeIcon width={28} height={28} />
           )}
         </View>
       )}
