@@ -16,7 +16,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 
-const LoginScreen = ({navigation}) => {
+const SignUp = ({ navigation }) => {
   const [email, onChangeEmail] = React.useState("");
   const [password, onChangePassword] = React.useState("");
 
@@ -25,7 +25,9 @@ const LoginScreen = ({navigation}) => {
       .then(async (userCredential) => {
         // Signed in
         const user = userCredential.user;
+        console.log("damn");
         onChangeLoggedInUser(user.email);
+        console.log("damn");
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -33,13 +35,17 @@ const LoginScreen = ({navigation}) => {
         console.log(errorMessage);
       });
   };
+  
 
   const createUser = () => {
+    console.log("damn");
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
         onChangeLoggedInUser(user.email);
-        navigation.navigate('SignUp')
+        console.log("damn");
+        navigation.navigate('SignUp');
+        console.log("damn");
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -87,7 +93,7 @@ const LoginScreen = ({navigation}) => {
   );
 };
 
-export default LoginScreen;
+export default SignUp;
 
 const styles = StyleSheet.create({
   container: {
