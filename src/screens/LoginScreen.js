@@ -1,46 +1,53 @@
-import React ,{useState} from 'react'
-import { KeyboardAvoidingView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import DaveInput from '../components/DaveInput'
-import { signIn } from '../configuration/configurationText'
-import MailIcon from '../../public/icons/mail.svg'
-import LockIcon from '../../public/icons/lock.svg'
-
+import React, { useState } from "react";
+import {
+  KeyboardAvoidingView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import DaveInput from "../components/DaveInput";
+import { signIn } from "../configuration/configurationText";
+import MailIcon from "../../public/icons/mail.svg";
+import LockIcon from "../../public/icons/lock.svg";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../firebaseConfig";
+import SignUp from "./signUp";
 
 const LoginScreen = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, onChangeEmail] = React.useState("");
+  const [password, onChangePassword] = React.useState("");
 
-  // const navigation = useNavigation()
+  const login = () => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then(async (userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        onChangeLoggedInUser(user.email);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage);
+      });
+  };
 
-  // useEffect(() => {
-  //   const unsubscribe = auth.onAuthStateChanged(user => {
-  //     if (user) {
-  //       navigation.replace("Home")
-  //     }
-  //   })
-
-  //   return unsubscribe
-  // }, [])
-
-  // const handleSignUp = () => {
-  //   auth
-  //     .createUserWithEmailAndPassword(email, password)
-  //     .then(userCredentials => {
-  //       const user = userCredentials.user;
-  //       console.log('Registered with:', user.email);
-  //     })
-  //     .catch(error => alert(error.message))
-  // }
-
-  // const handleLogin = () => {
-  //   auth
-  //     .signInWithEmailAndPassword(email, password)
-  //     .then(userCredentials => {
-  //       const user = userCredentials.user;
-  //       console.log('Logged in with:', user.email);
-  //     })
-  //     .catch(error => alert(error.message))
-  // }
+  const createUser = () => {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        onChangeLoggedInUser(user.email);
+        return <Stack.Screen name="SignUp" component={SignUp} />;
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
+  };
   return (
     <KeyboardAvoidingView style={styles.container}>
       <Text style={styles.title}>hello!</Text>
@@ -48,24 +55,26 @@ const LoginScreen = () => {
         <View style={styles.input}>
           <DaveInput
             placeholder="E-Mail"
-            onChangeText={(text) => setEmail(text)}
+            onChangeText={onChangeEmail}
             Icon={MailIcon}
             isSecure={false}
+            value={email}
           />
         </View>
         <View style={styles.input}>
           <DaveInput
             placeholder="Password"
-            onChangeText={(text) => setPassword(text)}
+            onChangeText={onChangePassword}
             Icon={LockIcon}
             isSecure={true}
+            value={password}
           />
         </View>
       </View>
 
       <TouchableOpacity
         style={styles.LoginButtonContainer}
-        // onPress={handleLogin}
+        onPress={() => createUser()}
       >
         <Text style={[styles.buttonText]}>Login</Text>
       </TouchableOpacity>
@@ -78,9 +87,9 @@ const LoginScreen = () => {
       </TouchableOpacity>
     </KeyboardAvoidingView>
   );
-}
+};
 
-export default LoginScreen
+export default LoginScreen;
 
 const styles = StyleSheet.create({
   container: {
