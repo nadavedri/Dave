@@ -1,15 +1,14 @@
-import { useNavigation } from '@react-navigation/core'
-import React, { useEffect, useState } from 'react'
-import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import { auth } from '../firebaseConfig'
+import React ,{useState} from 'react'
+import { KeyboardAvoidingView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import DaveInput from '../components/DaveInput'
 import { signIn } from '../configuration/configurationText'
 import MailIcon from '../../public/icons/mail.svg'
+import LockIcon from '../../public/icons/lock.svg'
 
 
 const LoginScreen = () => {
-  // const [email, setEmail] = useState('')
-  // const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   // const navigation = useNavigation()
 
@@ -46,12 +45,22 @@ const LoginScreen = () => {
     <KeyboardAvoidingView style={styles.container}>
       <Text style={styles.title}>hello!</Text>
       <View style={styles.inputs}>
-        <DaveInput
-          placeholder="E-Mail"
-          onChangeText={(text) => setEmail(text)}
-          Icon={MailIcon}
-          isSecure={true}
-        />
+        <View style={styles.input}>
+          <DaveInput
+            placeholder="E-Mail"
+            onChangeText={(text) => setEmail(text)}
+            Icon={MailIcon}
+            isSecure={false}
+          />
+        </View>
+        <View style={styles.input}>
+          <DaveInput
+            placeholder="Password"
+            onChangeText={(text) => setPassword(text)}
+            Icon={LockIcon}
+            isSecure={true}
+          />
+        </View>
       </View>
 
       <TouchableOpacity
@@ -96,8 +105,11 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     marginTop: 30,
-    justifyContent: "space-between",
     height: 200,
+  },
+
+  input: {
+    marginBottom: 20,
   },
 
   LoginButtonContainer: {
@@ -114,9 +126,9 @@ const styles = StyleSheet.create({
   },
 
   footer: {
-    marginTop:170
+    marginTop: 170,
   },
-  
+
   footerButton: {
     color: "#163F6B",
     fontWeight: "700",
