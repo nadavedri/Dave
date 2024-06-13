@@ -6,7 +6,7 @@ import { useCallback, useState } from "react";
 const DaveInput = ({ placeholder, value, onChangeText,Icon, iconSize = 20, isSecure }) => {
   const [isHidden, setIsHidden] = useState(isSecure);
 
-  const toggle = useCallback(() => {
+  const toggleHidden = useCallback(() => {
     setIsHidden((prev) => !prev);
   }, []);
 
@@ -23,7 +23,7 @@ const DaveInput = ({ placeholder, value, onChangeText,Icon, iconSize = 20, isSec
         secureTextEntry={isSecure && isHidden}
       />
       {isSecure && (
-        <TouchableOpacity onPress={toggle} style={styles.leftSvg}>
+        <TouchableOpacity onPress={toggleHidden} style={styles.leftSvg}>
           {isHidden ? (
             <ClosedEyeIcon width={28} height={28} />
           ) : (
@@ -41,8 +41,9 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    minWidth: 350,
-    height: 50,
+    minWidth: 334,
+    height: 62,
+    marginBottom: 24,
     backgroundColor: "#fff",
     borderRadius: 10,
   },

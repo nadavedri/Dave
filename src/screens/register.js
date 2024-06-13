@@ -1,162 +1,111 @@
-import { useNavigation } from '@react-navigation/core'
-import React, { useEffect, useState } from 'react'
-import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import { auth } from '../firebase'
-import DaveInput from '../components/DaveInput'
-import { confirmPassword, createAcountTitle, signIn } from '../configuration/configurationText'
-import { mailIcon, newLockIcon } from '../../public/images/images'
+import {
+  KeyboardAvoidingView,
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  View,
+  Platform
+} from "react-native";
+import MailIcon from "../../public/icons/mail.svg";
+import PlusPerson from "../../public/icons/plus-person.svg";
+import LockIcon from "../../public/icons/lock.svg";
+import ArrowIcon from "../../public/icons/arrow.svg";
+import DaveInput from "../components/DaveInput";
 
-
-const registerScreen = () => {
-  // const [email, setEmail] = useState('')
-  // const [password, setPassword] = useState('')
-
-  // const navigation = useNavigation()
-
-  // useEffect(() => {
-  //   const unsubscribe = auth.onAuthStateChanged(user => {
-  //     if (user) {
-  //       navigation.replace("Home")
-  //     }
-  //   })
-
-  //   return unsubscribe
-  // }, [])
-
-  // const handleSignUp = () => {
-  //   auth
-  //     .createUserWithEmailAndPassword(email, password)
-  //     .then(userCredentials => {
-  //       const user = userCredentials.user;
-  //       console.log('Registered with:', user.email);
-  //     })
-  //     .catch(error => alert(error.message))
-  // }
-
-  // const handleLogin = () => {
-  //   auth
-  //     .signInWithEmailAndPassword(email, password)
-  //     .then(userCredentials => {
-  //       const user = userCredentials.user;
-  //       console.log('Logged in with:', user.email);
-  //     })
-  //     .catch(error => alert(error.message))
-  // }
-
+const Register = () => {
   return (
     <KeyboardAvoidingView
       style={styles.container}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
     >
-    <View style={styles.contentContainer} >
-
-    <Text style={styles.title}>{createAcountTitle}</Text>
-      <View style={styles.inputContainer}>
-      <DaveInput
-        placeholder="Full Name"
-        // leftImage={lockIconIcon}
-        onChangeText={text => setEmail(text)}
-        // value={email}
-        />
-
-      <DaveInput
-        placeholder="E-mail"
-        // leftImage= {newLockIcon}
-        // rightImage= {mailIcon}
-        onChangeText={text => setPassword(text)}
-        // value={E-mail} 
-        />
-
-<DaveInput
-        placeholder="Password"
-        // leftImage= {lockIconIcon}
-        // rightImage= {mailIcon}
-        onChangeText={text => setPassword(text)}
-        // value={password} 
-        />
-
-<DaveInput
-        placeholder={confirmPassword}
-        // leftImage= {lockIconIcon}
-        // rightImage= {""}
-        onChangeText={text => setPassword(text)}
-        // value={password} 
-        />
-        
-      </View>
-
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          // onPress={handleLogin}
-          style={styles.button}
-        >
-          <Text style={[styles.buttonText]}>{signUpText}</Text>
-        </TouchableOpacity>
+      <Text style={styles.title}>CREATE ACCOUNT</Text>
+      <View style={styles.inputs}>
+        <View style={styles.input}>
+          <DaveInput
+            placeholder="Full Name"
+            onChangeText={(text) => setEmail(text)}
+            Icon={PlusPerson}
+            isSecure={false}
+          />
         </View>
-    </View>
-     
-
-        <TouchableOpacity style={styles.footer}
-          // onPress={handleSignUp}
-          >
-          <Text style={styles.buttonOutlineText}>{signIn}</Text>
+        <View style={styles.input}>
+          <DaveInput
+            placeholder="E-Mail"
+            onChangeText={(text) => setEmail(text)}
+            Icon={MailIcon}
+            isSecure={false}
+          />
+        </View>
+        <View style={styles.input}>
+          <DaveInput
+            placeholder="Password"
+            onChangeText={(text) => setEmail(text)}
+            Icon={LockIcon}
+            isSecure={true}
+          />
+        </View>
+        <View style={styles.input}>
+          <DaveInput
+            placeholder="Confirm Password"
+            onChangeText={(text) => setEmail(text)}
+            Icon={LockIcon}
+            isSecure={true}
+          />
+        </View>
+        <TouchableOpacity
+          style={styles.ButtonContainer}
+          // onPress={handleLogin}
+        >
+          <Text style={styles.buttonText}>Sign Up</Text>
+          <ArrowIcon />
         </TouchableOpacity>
-      
+      </View>
     </KeyboardAvoidingView>
-  )
-}
-
-export default LoginScreen
+  );
+};
+export default Register;
 
 const styles = StyleSheet.create({
   container: {
+    display: "flex",
     flex: 1,
-    backgroundColor:'#0BC1E7',
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "start",
+    backgroundColor: "#0BC1E7",
   },
-  contentContainer:{
-    flex:1,
-    marginTop: 100,
-    justifyContent: 'center',
-    
+
+  title: {
+    marginTop: 61,
+    marginBottom: 28,
+    fontFamily: "PoetsenOne",
+    fontWeight: "400",
+    fontSize: 39,
+    lineHeight: 46.8,
+    alignSelf: "center",
+    color: "#FFFFFF",
   },
-  title:{   
-    marginBottom:20,
-    color: 'white',
-    fontSize: 48,
-    fontWeight: '400',
-    textTransform: 'uppercase',
+
+  inputs: {
+    display: "flex",
+    alignItems: "center",
+    height: 200,
   },
-  inputContainer: {
-    justifyContent: 'space-between',
-    width: '200'
-  },
-  buttonContainer: {
-    flex:1,
-    width: '60%',
-    marginTop: 40,
-  },
-  button: {
-    backgroundColor: '#163F6B',
+  ButtonContainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    width: 147,
+    height: 62,
+    marginTop: 45,
     padding: 15,
+    backgroundColor: "#163F6B",
     borderRadius: 10,
-    },
-  buttonOutline: {
-    backgroundColor: 'white',
-    marginTop: 5,
-    borderColor: '#163F6B',
-    borderWidth: 2,
   },
+
   buttonText: {
-    color: 'white',
-    fontWeight: '700',
+    color: "white",
+    fontWeight: "700",
     fontSize: 16,
   },
-  buttonOutlineText: {
-    color: '#163F6B',
-    fontWeight: '700',
-    fontSize: 16,
-    
-  },
-  footer:{height: 100,},
-})
+});

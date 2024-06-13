@@ -45,22 +45,18 @@ const LoginScreen = () => {
     <KeyboardAvoidingView style={styles.container}>
       <Text style={styles.title}>hello!</Text>
       <View style={styles.inputs}>
-        <View style={styles.input}>
-          <DaveInput
-            placeholder="E-Mail"
-            onChangeText={(text) => setEmail(text)}
-            Icon={MailIcon}
-            isSecure={false}
-          />
-        </View>
-        <View style={styles.input}>
-          <DaveInput
-            placeholder="Password"
-            onChangeText={(text) => setPassword(text)}
-            Icon={LockIcon}
-            isSecure={true}
-          />
-        </View>
+        <DaveInput
+          placeholder="E-Mail"
+          onChangeText={(text) => setEmail(text)}
+          Icon={MailIcon}
+          isSecure={false}
+        />
+        <DaveInput
+          placeholder="Password"
+          onChangeText={(text) => setPassword(text)}
+          Icon={LockIcon}
+          isSecure={true}
+        />
       </View>
 
       <TouchableOpacity
@@ -106,10 +102,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 30,
     height: 200,
-  },
-
-  input: {
-    marginBottom: 20,
   },
 
   LoginButtonContainer: {
