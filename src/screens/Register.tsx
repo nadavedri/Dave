@@ -11,12 +11,32 @@ import PlusPerson from "../../public/icons/plus-person.svg";
 import LockIcon from "../../public/icons/lock.svg";
 import ArrowIcon from "../../public/icons/arrow.svg";
 import DaveInput from "../components/DaveInput";  
-import React from "react";
+import React, { useState } from "react";
 import { signIn } from "../consts";
 import { useNavigation } from "@react-navigation/native";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../firebaseConfig";
 
 export const Register = () => {
   const { navigate } = useNavigation();
+  
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const createUser = () => {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        navigate("AddDive");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
+  };
 
   return (
     <KeyboardAvoidingView
@@ -28,23 +48,24 @@ export const Register = () => {
       <View style={styles.inputs}>
         <DaveInput
           placeholder="Full Name"
-          // onChangeText={(text) => setEmail(text)}
           Icon={PlusPerson}
           isSecure={false}
         />
 
         <DaveInput
           placeholder="E-Mail"
-          // onChangeText={(text) => setEmail(text)}
+          onChangeText={setEmail}
           Icon={MailIcon}
           isSecure={false}
+          value={email}
         />
 
         <DaveInput
           placeholder="Password"
-          // onChangeText={(text) => setEmail(text)}
+          onChangeText={setPassword}
           Icon={LockIcon}
           isSecure={true}
+          value={password}
         />
 
         <DaveInput
@@ -56,12 +77,12 @@ export const Register = () => {
 
         <TouchableOpacity
           style={styles.ButtonContainer}
-          onPress={() => navigate("addDive")}
+          onPress={() => navigate("AddDive")}
         >
           <Text style={styles.buttonText}>Sign Up</Text>
           <ArrowIcon />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.footerContainer} onPress={() => navigate("LoginScreen")}>
+        <TouchableOpacity style={styles.footerContainer} onPress={createUser}>
           <Text style={styles.footerButton}>{signIn}</Text>
         </TouchableOpacity>
       </View>
