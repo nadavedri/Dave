@@ -4,15 +4,20 @@ import {
   TouchableOpacity,
   Text,
   View,
-  Platform
+  Platform,
 } from "react-native";
 import MailIcon from "../../public/icons/mail.svg";
 import PlusPerson from "../../public/icons/plus-person.svg";
 import LockIcon from "../../public/icons/lock.svg";
 import ArrowIcon from "../../public/icons/arrow.svg";
-import DaveInput from "../components/DaveInput";
+import DaveInput from "../components/DaveInput";  
+import React from "react";
+import { signIn } from "../consts";
+import { useNavigation } from "@react-navigation/native";
 
-const Register = () => {
+export const Register = () => {
+  const { navigate } = useNavigation();
+
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -21,56 +26,54 @@ const Register = () => {
     >
       <Text style={styles.title}>CREATE ACCOUNT</Text>
       <View style={styles.inputs}>
-        <View style={styles.input}>
-          <DaveInput
-            placeholder="Full Name"
-            onChangeText={(text) => setEmail(text)}
-            Icon={PlusPerson}
-            isSecure={false}
-          />
-        </View>
-        <View style={styles.input}>
-          <DaveInput
-            placeholder="E-Mail"
-            onChangeText={(text) => setEmail(text)}
-            Icon={MailIcon}
-            isSecure={false}
-          />
-        </View>
-        <View style={styles.input}>
-          <DaveInput
-            placeholder="Password"
-            onChangeText={(text) => setEmail(text)}
-            Icon={LockIcon}
-            isSecure={true}
-          />
-        </View>
-        <View style={styles.input}>
-          <DaveInput
-            placeholder="Confirm Password"
-            onChangeText={(text) => setEmail(text)}
-            Icon={LockIcon}
-            isSecure={true}
-          />
-        </View>
+        <DaveInput
+          placeholder="Full Name"
+          // onChangeText={(text) => setEmail(text)}
+          Icon={PlusPerson}
+          isSecure={false}
+        />
+
+        <DaveInput
+          placeholder="E-Mail"
+          // onChangeText={(text) => setEmail(text)}
+          Icon={MailIcon}
+          isSecure={false}
+        />
+
+        <DaveInput
+          placeholder="Password"
+          // onChangeText={(text) => setEmail(text)}
+          Icon={LockIcon}
+          isSecure={true}
+        />
+
+        <DaveInput
+          placeholder="Confirm Password"
+          // onChangeText={(text) => setEmail(text)}
+          Icon={LockIcon}
+          isSecure={true}
+        />
+
         <TouchableOpacity
           style={styles.ButtonContainer}
-          // onPress={handleLogin}
+          onPress={() => navigate("addDive")}
         >
           <Text style={styles.buttonText}>Sign Up</Text>
           <ArrowIcon />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.footerContainer} onPress={() => navigate("LoginScreen")}>
+          <Text style={styles.footerButton}>{signIn}</Text>
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
   );
 };
-export default Register;
 
 const styles = StyleSheet.create({
   container: {
     display: "flex",
     flex: 1,
-    justifyContent: "start",
+    justifyContent: "flex-start",
     backgroundColor: "#0BC1E7",
   },
 
@@ -102,9 +105,17 @@ const styles = StyleSheet.create({
     backgroundColor: "#163F6B",
     borderRadius: 10,
   },
-
+  
   buttonText: {
     color: "white",
+    fontWeight: "700",
+    fontSize: 16,
+  },
+  footerContainer:{
+    marginTop: 65,
+  },
+  footerButton: {
+    color: "#163F6B",
     fontWeight: "700",
     fontSize: 16,
   },

@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { IconButton } from 'react-native-paper';
 
-const HomePage = () => {
+export const HomePage = () => {
     return (
         <View style={styles.container}>
             <View style={styles.circleContainer}>
@@ -46,4 +46,3 @@ const styles = StyleSheet.create({
     },
 });
 
-export default HomePage;

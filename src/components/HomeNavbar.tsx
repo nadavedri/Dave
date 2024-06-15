@@ -3,7 +3,7 @@ import { Appbar, IconButton, Avatar } from 'react-native-paper';
 import { View, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-const HomeNavbar = () => {
+export const HomeNavbar = () => {
   const navigation = useNavigation();
 
   return (
@@ -11,7 +11,6 @@ const HomeNavbar = () => {
       <IconButton
         icon="menu"
         size={30}
-        onPress={() => navigation.openDrawer()}
         iconColor="white"
         style={styles.icon}
       />
@@ -47,4 +46,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeNavbar;

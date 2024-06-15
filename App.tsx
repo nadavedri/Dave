@@ -1,28 +1,25 @@
-import { StyleSheet, Text, View } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 
-import LoginScreen from "./src/screens/LoginScreen";
-import Register from "./src/screens/Register";
+import { Register, LoginScreen, AddDive } from "./src/screens";
 // import DivingMap from "./src/screens/DivingMap";
-import AddDive from "./src/screens/addDive";
-import { PaperProvider } from 'react-native-paper';
+import { PaperProvider } from "react-native-paper";
+import React from "react";
 
 const Stack = createNativeStackNavigator();
 
-export default function App() {
+export const App = () => {
   return (
     <PaperProvider>
       <NavigationContainer>
         <Stack.Navigator>
-          {/* <Stack.Screen name="LoginScreen" component={LoginScreen} /> */}
+          <Stack.Screen name="LoginScreen" component={LoginScreen} />
           <Stack.Screen name="Register" component={Register} />
-          {/* <Stack.Screen name="addDive" component={AddDive} /> */}
+          <Stack.Screen name="addDive" component={AddDive} />
           {/* <Stack.Screen name="MapScreen" component={DivingMap} /> */}
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>
   );
-}
-
-const styles = StyleSheet.create({});
+};
+export default App;
