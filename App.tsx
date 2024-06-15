@@ -15,7 +15,7 @@ export const App = () => {
         <Stack.Navigator>
           <Stack.Screen name="LoginScreen" component={LoginScreen} />
           <Stack.Screen name="Register" component={Register} />
-          <Stack.Screen name="addDive" component={AddDive} />
+          <Stack.Screen name="AddDive" component={AddDive} />
           {/* <Stack.Screen name="MapScreen" component={DivingMap} /> */}
         </Stack.Navigator>
       </NavigationContainer>
