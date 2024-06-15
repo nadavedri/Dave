@@ -13,8 +13,8 @@ export const App = () => {
     <PaperProvider>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="LoginScreen" component={LoginScreen} />
           <Stack.Screen name="Register" component={Register} />
+          <Stack.Screen name="LoginScreen" component={LoginScreen} />
           <Stack.Screen name="AddDive" component={AddDive} />
           {/* <Stack.Screen name="MapScreen" component={DivingMap} /> */}
         </Stack.Navigator>

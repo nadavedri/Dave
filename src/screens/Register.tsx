@@ -10,21 +10,23 @@ import MailIcon from "../../public/icons/mail.svg";
 import PlusPerson from "../../public/icons/plus-person.svg";
 import LockIcon from "../../public/icons/lock.svg";
 import ArrowIcon from "../../public/icons/arrow.svg";
-import DaveInput from "../components/DaveInput";  
 import React, { useState } from "react";
 import { signIn } from "../consts";
 import { useNavigation } from "@react-navigation/native";
 import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword
 } from "firebase/auth";
 import { auth } from "../firebaseConfig";
+import { DaveInput } from "../components";
 
 export const Register = () => {
   const { navigate } = useNavigation();
-  
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email,setEmail] = useState('')
+  const [password, setPassword] = useState("");
+
+  const handleEmailChange = (newEmail: string) => setEmail(newEmail);
+  const handlePasswordChange = (newPassword: string) =>
+    setPassword(newPassword);
 
   const createUser = () => {
     createUserWithEmailAndPassword(auth, email, password)
@@ -36,7 +38,7 @@ export const Register = () => {
         const errorCode = error.code;
         const errorMessage = error.message;
       });
-  };
+  }; 
 
   return (
     <KeyboardAvoidingView
@@ -45,44 +47,38 @@ export const Register = () => {
       keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
     >
       <Text style={styles.title}>CREATE ACCOUNT</Text>
+
       <View style={styles.inputs}>
-        <DaveInput
-          placeholder="Full Name"
-          Icon={PlusPerson}
-          isSecure={false}
-        />
+        <DaveInput placeholder="Full Name" Icon={PlusPerson} />
 
         <DaveInput
           placeholder="E-Mail"
-          onChangeText={setEmail}
           Icon={MailIcon}
-          isSecure={false}
-          value={email}
+          onTextChange={handleEmailChange}
         />
 
-        <DaveInput
-          placeholder="Password"
-          onChangeText={setPassword}
-          Icon={LockIcon}
-          isSecure={true}
-          value={password}
-        />
+        <DaveInput placeholder="Password" Icon={LockIcon} isSecure={true} />
 
         <DaveInput
           placeholder="Confirm Password"
-          // onChangeText={(text) => setEmail(text)}
           Icon={LockIcon}
           isSecure={true}
+          onTextChange={handlePasswordChange}
         />
 
         <TouchableOpacity
           style={styles.ButtonContainer}
-          onPress={() => navigate("AddDive")}
+          onPress={() => {
+            createUser;
+          }}
         >
           <Text style={styles.buttonText}>Sign Up</Text>
           <ArrowIcon />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.footerContainer} onPress={createUser}>
+        <TouchableOpacity
+          style={styles.footerContainer}
+          onPress={() => navigate("LoginScreen")}
+        >
           <Text style={styles.footerButton}>{signIn}</Text>
         </TouchableOpacity>
       </View>

@@ -1,16 +1,13 @@
 import React, { useState } from 'react'
 import { KeyboardAvoidingView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import DaveInput from '../components/DaveInput'
 import { signUp } from '../consts'
 import MailIcon from '../../public/icons/mail.svg'
 import LockIcon from '../../public/icons/lock.svg'
 import { useNavigation } from '@react-navigation/native'
 
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
-import { auth } from "../firebaseConfig";
+import { signInWithEmailAndPassword } from "firebase/auth"
+import { auth } from "../firebaseConfig"
+import { DaveInput } from "../components"
 
 
 export const LoginScreen = () => {
@@ -41,27 +38,13 @@ export const LoginScreen = () => {
     <KeyboardAvoidingView style={styles.container}>
       <Text style={styles.title}>hello!</Text>
       <View style={styles.inputs}>
-        <DaveInput
-          placeholder="E-Mail"
-          onChangeText={setEmail}
-          Icon={MailIcon}
-          isSecure={false}
-          value={email}
-
-        />
-        <DaveInput
-          placeholder="Password"
-          onChangeText={setPassword}
-          Icon={LockIcon}
-          isSecure={true}
-          value={password}
-        />
+        <DaveInput placeholder="E-Mail" Icon={MailIcon} />
+        <DaveInput placeholder="Password" Icon={LockIcon} isSecure={true} />
       </View>
 
       <TouchableOpacity
         style={styles.LoginButtonContainer}
         onPress={login}
-        // onPress={() => navigate("addDive")}
       >
         <Text style={[styles.buttonText]}>Login</Text>
       </TouchableOpacity>

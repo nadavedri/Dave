@@ -7,15 +7,26 @@ import { SvgProps } from "react-native-svg";
 
 export type DaveInputProp = {
   placeholder: string;
-  value?: string;
-  onChangeText?: () => void;
   Icon: React.FC<SvgProps>;
   iconSize?: number;
   isSecure?: boolean;
+  onTextChange?: (text:string) => void;
 };
 
-const DaveInput = ({ placeholder, value, onChangeText,Icon, iconSize = 20, isSecure }:DaveInputProp) => {
+export const DaveInput = ({
+  placeholder,
+  Icon,
+  iconSize = 20,
+  isSecure,
+  onTextChange
+}: DaveInputProp) => {
   const [isHidden, setIsHidden] = useState(isSecure);
+  const [text, setText] = useState("");
+
+  const handleChangeText = (newText:string) => {
+    setText(newText);
+    onTextChange && onTextChange(newText);
+  }
 
   const toggleHidden = useCallback(() => {
     setIsHidden((prev) => !prev);
@@ -28,13 +39,17 @@ const DaveInput = ({ placeholder, value, onChangeText,Icon, iconSize = 20, isSec
       </View>
       <TextInput
         placeholder={placeholder}
-        value={value}
-        onChangeText={onChangeText}
+        value={text}
+        onChangeText={handleChangeText}
         style={styles.input}
         secureTextEntry={isSecure && isHidden}
       />
       {isSecure && (
-        <TouchableOpacity activeOpacity={0.8} onPress={toggleHidden} style={styles.leftSvg}>
+        <TouchableOpacity
+          activeOpacity={0.8}
+          onPress={toggleHidden}
+          style={styles.leftSvg}
+        >
           {isHidden ? (
             <ClosedEyeIcon width={28} height={28} />
           ) : (
@@ -46,7 +61,6 @@ const DaveInput = ({ placeholder, value, onChangeText,Icon, iconSize = 20, isSec
   );
 };
 
-export default DaveInput;
 const styles = StyleSheet.create({
   viewContainer: {
     display: "flex",
