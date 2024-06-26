@@ -1,6 +1,7 @@
-import MapView from 'react-native-maps';
+import React from 'react';
+import MapView, { Marker } from 'react-native-maps';
 
-const DivingMap = () => {
+export const DivingMap = () => {
     return (
       <MapView
         style={{ flex: 1 }}
@@ -23,4 +24,3 @@ const DivingMap = () => {
     );
   };
   
-  export default DivingMap;
