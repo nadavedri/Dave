@@ -1,6 +1,6 @@
-import { StyleSheet, View, TextInput ,TouchableOpacity} from "react-native";
-import EyeIcon from '../../public/icons/eye.svg';
-import ClosedEyeIcon from '../../public/icons/closedEye.svg';
+import { StyleSheet, View, TextInput, TouchableOpacity } from "react-native";
+import EyeIcon from "../../public/icons/eye.svg";
+import ClosedEyeIcon from "../../public/icons/closedEye.svg";
 import { useCallback, useState } from "react";
 import React from "react";
 import { SvgProps } from "react-native-svg";
@@ -10,56 +10,58 @@ export type DaveInputProp = {
   Icon: React.FC<SvgProps>;
   iconSize?: number;
   isSecure?: boolean;
-  onTextChange?: (text:string) => void;
+  onTextChange?: (text: string) => void;
 };
 
-export const DaveInput = ({
-  placeholder,
-  Icon,
-  iconSize = 20,
-  isSecure,
-  onTextChange
-}: DaveInputProp) => {
-  const [isHidden, setIsHidden] = useState(isSecure);
-  const [text, setText] = useState("");
+export const DaveInput = React.memo(
+  ({
+    placeholder,
+    Icon,
+    iconSize = 20,
+    isSecure,
+    onTextChange,
+  }: DaveInputProp) => {
+    const [isHidden, setIsHidden] = useState(isSecure);
+    const [text, setText] = useState("");
 
-  const handleChangeText = (newText:string) => {
-    setText(newText);
-    onTextChange && onTextChange(newText);
-  }
+    const handleChangeText = (newText: string) => {
+      setText(newText);
+      onTextChange && onTextChange(newText);
+    };
 
-  const toggleHidden = useCallback(() => {
-    setIsHidden((prev) => !prev);
-  }, []);
+    const toggleHidden = useCallback(() => {
+      setIsHidden((prev) => !prev);
+    }, []);
 
-  return (
-    <View style={styles.viewContainer}>
-      <View style={styles.rightSvg}>
-        <Icon width={iconSize} height={iconSize} />
+    return (
+      <View style={styles.viewContainer}>
+        <View style={styles.rightSvg}>
+          <Icon width={iconSize} height={iconSize} />
+        </View>
+        <TextInput
+          placeholder={placeholder}
+          value={text}
+          onChangeText={handleChangeText}
+          style={styles.input}
+          secureTextEntry={isSecure && isHidden}
+        />
+        {isSecure && (
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={toggleHidden}
+            style={styles.leftSvg}
+          >
+            {isHidden ? (
+              <ClosedEyeIcon width={28} height={28} />
+            ) : (
+              <EyeIcon width={28} height={28} />
+            )}
+          </TouchableOpacity>
+        )}
       </View>
-      <TextInput
-        placeholder={placeholder}
-        value={text}
-        onChangeText={handleChangeText}
-        style={styles.input}
-        secureTextEntry={isSecure && isHidden}
-      />
-      {isSecure && (
-        <TouchableOpacity
-          activeOpacity={0.8}
-          onPress={toggleHidden}
-          style={styles.leftSvg}
-        >
-          {isHidden ? (
-            <ClosedEyeIcon width={28} height={28} />
-          ) : (
-            <EyeIcon width={28} height={28} />
-          )}
-        </TouchableOpacity>
-      )}
-    </View>
-  );
-};
+    );
+  }
+);
 
 const styles = StyleSheet.create({
   viewContainer: {
@@ -70,7 +72,7 @@ const styles = StyleSheet.create({
     height: 62,
     marginBottom: 24,
     backgroundColor: "#fff",
-    borderRadius: 10
+    borderRadius: 10,
   },
 
   rightSvg: {

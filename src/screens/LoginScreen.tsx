@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { KeyboardAvoidingView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import {DaveInput} from '../components'
 import { signUp } from '../consts'
 import MailIcon from '../../public/icons/mail.svg'
 import LockIcon from '../../public/icons/lock.svg'
@@ -11,35 +12,32 @@ import { DaveInput } from "../components"
 
 
 export const LoginScreen = () => {
-  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const { navigate } = useNavigation();
-
-    
-  const login = () => {
-    signInWithEmailAndPassword(auth, email, password)
-      .then(async (userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        navigate("AddDive")
-
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorMessage);
-      });
-  };
-
-
-
+  
+  const [email, setEmail] = useState('')
+  const handleEmailChange = (newEmail: string) =>{
+    setEmail(newEmail);
+  }
+  const handlePasswordChange = (newPassword: string) =>{
+    setPassword(newPassword);
+  }
 
   return (
     <KeyboardAvoidingView style={styles.container}>
       <Text style={styles.title}>hello!</Text>
       <View style={styles.inputs}>
-        <DaveInput placeholder="E-Mail" Icon={MailIcon} />
-        <DaveInput placeholder="Password" Icon={LockIcon} isSecure={true} />
+        <DaveInput
+          placeholder="E-Mail"
+          Icon={MailIcon}
+          onTextChange={handleEmailChange}
+        />
+        <DaveInput
+          placeholder="Password"
+          Icon={LockIcon}
+          isSecure={true}
+          onTextChange={handlePasswordChange}
+        />
       </View>
 
       <TouchableOpacity
