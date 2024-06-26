@@ -1,8 +1,8 @@
 import React from 'react';
-import { Appbar, IconButton, Avatar } from 'react-native-paper';
-import { View, StyleSheet } from 'react-native';
+import { Appbar, IconButton } from 'react-native-paper';
+import { View, StyleSheet, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
+import DaveLogo from '../assets/icons/davelogo.png';
 export const HomeNavbar = () => {
   const navigation = useNavigation();
 
@@ -11,11 +11,12 @@ export const HomeNavbar = () => {
       <IconButton
         icon="menu"
         size={30}
+        onPress={() => alert('cliked myBurger')}
         iconColor="white"
         style={styles.icon}
       />
-      <View style={styles.avatarContainer}>
-        <Avatar.Icon size={40} icon="folder" style={styles.avatar} />
+      <View style={styles.logoContainer}>
+        <Image source={DaveLogo} style={styles.logo} />
       </View>
       <IconButton
         icon="plus"
@@ -38,11 +39,14 @@ const styles = StyleSheet.create({
   icon: {
     backgroundColor: 'transparent',
   },
-  avatarContainer: {
+  logoContainer: {
     backgroundColor: 'transparent',
   },
-  avatar: {
+  logo: {
     backgroundColor: 'transparent',
+    width: 80,
+    height: 80
+
   },
 });
 
