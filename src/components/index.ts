@@ -1,3 +1,3 @@
 export * from './DaveInput';
-export * from "./HomePage";
+export * from "./BottomAddDive";
 export * from "./HomeNavbar";
