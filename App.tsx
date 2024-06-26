@@ -12,7 +12,7 @@ export const App = () => {
   return (
     <PaperProvider>
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="LoginScreen" component={LoginScreen} />
           <Stack.Screen name="Register" component={Register} />
           <Stack.Screen name="AddDive" component={AddDive} />
