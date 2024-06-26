@@ -1,27 +1,33 @@
-import { HomeNavbar,HomePage } from '../components';
+import { HomeNavbar, BottomAddDive } from '../components';
 import React from "react";
 import { Text, View, StyleSheet } from 'react-native';
 
 
 export const AddDive = () => {
-    return (
-      <View style={styles.container}>
+  return (
+    <View style={styles.container}>
+      <View style={styles.topPortion}>
         <HomeNavbar />
         <Text style={styles.greetingText}>Hello User</Text>
-        <HomePage />
       </View>
-    );
+      <BottomAddDive />
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "#0BC1E7",
-    },
-    greetingText: {
-        color: 'white',
-        fontSize: 16,
-        alignSelf: 'center',
-        marginTop: 20,
-    },
+  container: {
+    flex: 1,
+    backgroundColor: "#0BC1E7",
+  },
+  topPortion: {
+    height: 200
+  },
+  greetingText: {
+    color: 'white',
+    fontWeight: "bold",
+    fontSize: 18,
+    alignSelf: 'center',
+    marginTop: 72
+  },
 });
