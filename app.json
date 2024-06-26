@@ -1,7 +1,7 @@
 {
   "expo": {
     "experiments": {
-      "tsconfigPaths": false,
+      "tsconfigPaths": false
       
     },
     "name": "Dave",
