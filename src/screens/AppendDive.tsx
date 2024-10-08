@@ -3,7 +3,7 @@ import React from "react";
 import { Text, View, StyleSheet } from 'react-native';
 
 
-export const AddDive = () => {
+export const AppendDive = () => {
   return (
     <View style={styles.container}>
       <View style={styles.topPortion}>
