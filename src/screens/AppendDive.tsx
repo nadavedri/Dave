@@ -4,24 +4,26 @@ import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet } from 'react-native';
 
 export const AppendDive = () => {
-  const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false)
-  const [email, setEmail] = useState('')
+  const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
+  const [email, setEmail] = useState<string>('');
 
   useEffect(() => {
     const user = auth.currentUser;
-    if (user) {
-      setEmail(user?.email ?? "");
+    if (user && user.email) {
+      setEmail(user.email); 
     } else {
       console.log('No user is signed in');
     }
   }, []);
+
   return (  
     <View style={styles.container}>
-      {isDrawerOpen && <DaveDrawer/>}
-      <Text >hello {email}</Text>
+      {isDrawerOpen && <DaveDrawer />}
       <View style={styles.topPortion}>
-        <HomeNavbar setIsDrawerOpen={setIsDrawerOpen}/>
-s      </View>
+        <HomeNavbar setIsDrawerOpen={setIsDrawerOpen} />
+      <Text style={styles.greetingText}>hello {email.split('@')[0] || 'Guest'}</Text>
+      </View>
+
       <BottomAddDive />
     </View>
   );
