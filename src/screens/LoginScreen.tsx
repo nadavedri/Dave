@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { KeyboardAvoidingView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import DaveInput from '../components/DaveInput'
 import { signUp } from '../consts'
@@ -6,6 +6,7 @@ import MailIcon from '../../public/icons/mail.svg'
 import LockIcon from '../../public/icons/lock.svg'
 import { useNavigation } from '@react-navigation/native'
 import { auth } from '../firebaseConfig';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 export const LoginScreen = () => {
   const [email, setEmail] = useState('')
@@ -13,24 +14,27 @@ export const LoginScreen = () => {
   const { navigate } = useNavigation();
 
 
-  // useEffect(() => {
-  //   const unsubscribe = auth.onAuthStateChanged((user: any) => {
-  //     if (user) {
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user: any) => {
+      if (user) {
         
-  //     }
-  //   })
+      }
+    })
 
-  //   return unsubscribe
-  // }, [])
+    return unsubscribe
+  }, [])
 
   const handleLogin = () => {
-    auth
-      .signInWithEmailAndPassword(email, password)
-      .then((userCredentials: { user: any }) => {
-        const user = userCredentials.user;
-        console.log('Logged in with:', user.email);
-      }).then(()=>navigate("AppendDive"))
-      .catch(() => alert("failed to connect funct name {handleLogin"))
+signInWithEmailAndPassword(auth, email, password)
+.then((userCredentials) => {
+  const user = userCredentials.user;
+  console.log('logged in with:', user.email);
+  navigate("AppendDive");
+})
+.catch((error) => {
+  console.error('Error during login:', error);
+  alert(`Log in failed: ${error.message}`);
+});
   }
   return (
     <KeyboardAvoidingView style={styles.container}>
