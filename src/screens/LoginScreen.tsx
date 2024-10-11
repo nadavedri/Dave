@@ -5,57 +5,46 @@ import { signUp } from '../consts'
 import MailIcon from '../../public/icons/mail.svg'
 import LockIcon from '../../public/icons/lock.svg'
 import { useNavigation } from '@react-navigation/native'
-
+import { auth } from '../firebaseConfig';
 
 export const LoginScreen = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const { navigate } = useNavigation();
 
-  // const navigation = useNavigation()
 
   // useEffect(() => {
-  //   const unsubscribe = auth.onAuthStateChanged(user => {
+  //   const unsubscribe = auth.onAuthStateChanged((user: any) => {
   //     if (user) {
-  //       navigation.replace("Home")
+        
   //     }
   //   })
 
   //   return unsubscribe
   // }, [])
 
-  // const handleSignUp = () => {
-  //   auth
-  //     .createUserWithEmailAndPassword(email, password)
-  //     .then(userCredentials => {
-  //       const user = userCredentials.user;
-  //       console.log('Registered with:', user.email);
-  //     })
-  //     .catch(error => alert(error.message))
-  // }
-
-  // const handleLogin = () => {
-  //   auth
-  //     .signInWithEmailAndPassword(email, password)
-  //     .then(userCredentials => {
-  //       const user = userCredentials.user;
-  //       console.log('Logged in with:', user.email);
-  //     })
-  //     .catch(error => alert(error.message))
-  // }
+  const handleLogin = () => {
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then((userCredentials: { user: any }) => {
+        const user = userCredentials.user;
+        console.log('Logged in with:', user.email);
+      }).then(()=>navigate("AppendDive"))
+      .catch(() => alert("failed to connect funct name {handleLogin"))
+  }
   return (
     <KeyboardAvoidingView style={styles.container}>
       <Text style={styles.title}>hello!</Text>
       <View style={styles.inputs}>
         <DaveInput
           placeholder="E-Mail"
-          // onChangeText={(text) => setEmail(text)}
+          onChangeText={setEmail}
           Icon={MailIcon}
           isSecure={false}
         />
         <DaveInput
           placeholder="Password"
-          // onChangeText={(text) => setPassword(text)}
+          onChangeText={setPassword}
           Icon={LockIcon}
           isSecure={true}
         />
@@ -63,7 +52,7 @@ export const LoginScreen = () => {
 
       <TouchableOpacity
         style={styles.LoginButtonContainer}
-        onPress={() => navigate("AppendDive")}
+        onPress={() => handleLogin()}
       >
         <Text style={[styles.buttonText]}>Login</Text>
       </TouchableOpacity>

@@ -8,7 +8,7 @@ import { SvgProps } from "react-native-svg";
 export type DaveInputProp = {
   placeholder: string;
   value?: string;
-  onChangeText?: () => void;
+  onChangeText?: (str:string) => void;
   Icon: React.FC<SvgProps>;
   iconSize?: number;
   isSecure?: boolean;
