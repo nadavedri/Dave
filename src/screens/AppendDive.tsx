@@ -1,16 +1,16 @@
 import { HomeNavbar, BottomAddDive } from '../components';
 import React, { useState } from "react";
-import { Text, View, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
 export const AppendDive = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false)
 
   return (
     <View style={styles.container}>
+      {isDrawerOpen ?? }
       <View style={styles.topPortion}>
-        <HomeNavbar />
-        <Text style={styles.greetingText}>Hello User</Text>
-      </View>
+        <HomeNavbar setIsDrawerOpen={setIsDrawerOpen}/>
+s      </View>
       <BottomAddDive />
     </View>
   );

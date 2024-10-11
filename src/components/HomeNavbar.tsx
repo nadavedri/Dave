@@ -3,15 +3,18 @@ import { Appbar, IconButton } from 'react-native-paper';
 import { View, StyleSheet, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import DaveLogo from '../assets/icons/davelogo.png';
-export const HomeNavbar = () => {
-  const navigation = useNavigation();
+type IHomeNavbar={
+  setIsDrawerOpen:(bool:boolean)=>void,
+}
+export const HomeNavbar = ({setIsDrawerOpen}:IHomeNavbar) => {
+  const { navigate } = useNavigation();
 
   return (
     <Appbar.Header style={styles.navbar}>
       <IconButton
         icon="menu"
         size={30}
-        onPress={() => alert('cliked myBurger')}
+        onPress={(bool) => setIsDrawerOpen(!bool)}
         iconColor="white"
         style={styles.icon}
       />

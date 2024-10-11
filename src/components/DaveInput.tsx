@@ -14,14 +14,7 @@ export type DaveInputProp = {
   isSecure?: boolean;
 };
 
-const DaveInput = ({
-  placeholder,
-  value,
-  onChangeText,
-  Icon,
-  iconSize = 20,
-  isSecure,
-}: DaveInputProp) => {
+export const DaveInput = ({ placeholder, value, onChangeText,Icon, iconSize = 20, isSecure }:DaveInputProp) => {
   const [isHidden, setIsHidden] = useState(isSecure);
 
   const toggleHidden = useCallback(() => {
@@ -56,8 +49,6 @@ const DaveInput = ({
     </View>
   );
 };
-
-export default DaveInput;
 const styles = StyleSheet.create({
   viewContainer: {
     display: 'flex',

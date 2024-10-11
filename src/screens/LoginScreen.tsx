@@ -1,16 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import {
-  KeyboardAvoidingView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import DaveInput from '../components/DaveInput';
-import { signUp } from '../consts';
-import MailIcon from '../../public/icons/mail.svg';
-import LockIcon from '../../public/icons/lock.svg';
-import { useNavigation } from '@react-navigation/native';
+import React, { useEffect, useState } from 'react'
+import { KeyboardAvoidingView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import {DaveInput} from '../components'
+import { signUp } from '../consts'
+import MailIcon from '../../public/icons/mail.svg'
+import LockIcon from '../../public/icons/lock.svg'
+import { useNavigation } from '@react-navigation/native'
 import { auth } from '../firebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
