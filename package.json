@@ -7,7 +7,8 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@expo/metro-config": "^0.18.11",
@@ -32,6 +33,7 @@
   "private": true,
   "devDependencies": {
     "@types/react": "^18.2.79",
-    "@types/react-native": "^0.73.0"
+    "@types/react-native": "^0.73.0",
+    "prettier": "^3.3.3"
   }
 }

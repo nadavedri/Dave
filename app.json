@@ -2,7 +2,6 @@
   "expo": {
     "experiments": {
       "tsconfigPaths": false
-      
     },
     "name": "Dave",
     "slug": "Dave",
@@ -15,9 +14,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },

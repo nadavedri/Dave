@@ -1,20 +1,27 @@
-import { StyleSheet, View, TextInput ,TouchableOpacity} from "react-native";
+import { StyleSheet, View, TextInput, TouchableOpacity } from 'react-native';
 import EyeIcon from '../../public/icons/eye.svg';
 import ClosedEyeIcon from '../../public/icons/closedEye.svg';
-import { useCallback, useState } from "react";
-import React from "react";
-import { SvgProps } from "react-native-svg";
+import { useCallback, useState } from 'react';
+import React from 'react';
+import { SvgProps } from 'react-native-svg';
 
 export type DaveInputProp = {
   placeholder: string;
   value?: string;
-  onChangeText?: (str:string) => void;
+  onChangeText?: (str: string) => void;
   Icon: React.FC<SvgProps>;
   iconSize?: number;
   isSecure?: boolean;
 };
 
-const DaveInput = ({ placeholder, value, onChangeText,Icon, iconSize = 20, isSecure }:DaveInputProp) => {
+const DaveInput = ({
+  placeholder,
+  value,
+  onChangeText,
+  Icon,
+  iconSize = 20,
+  isSecure,
+}: DaveInputProp) => {
   const [isHidden, setIsHidden] = useState(isSecure);
 
   const toggleHidden = useCallback(() => {
@@ -34,7 +41,11 @@ const DaveInput = ({ placeholder, value, onChangeText,Icon, iconSize = 20, isSec
         secureTextEntry={isSecure && isHidden}
       />
       {isSecure && (
-        <TouchableOpacity activeOpacity={0.8} onPress={toggleHidden} style={styles.leftSvg}>
+        <TouchableOpacity
+          activeOpacity={0.8}
+          onPress={toggleHidden}
+          style={styles.leftSvg}
+        >
           {isHidden ? (
             <ClosedEyeIcon width={28} height={28} />
           ) : (
@@ -49,14 +60,14 @@ const DaveInput = ({ placeholder, value, onChangeText,Icon, iconSize = 20, isSec
 export default DaveInput;
 const styles = StyleSheet.create({
   viewContainer: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
     minWidth: 334,
     height: 62,
     marginBottom: 24,
-    backgroundColor: "#fff",
-    borderRadius: 10
+    backgroundColor: '#fff',
+    borderRadius: 10,
   },
 
   rightSvg: {
