@@ -13,7 +13,7 @@ import LockIcon from "../../public/icons/lock.svg";
 import ArrowIcon from "../../public/icons/arrow.svg";
 import {DaveInput} from "../components";
 import { signIn } from "../consts";
-import { useNavigation } from "@react-navigation/native";
+// import { useNavigation } from "@react-navigation/native";
 import { auth } from "../firebaseConfig";
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 
@@ -91,13 +91,23 @@ export const Register = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    display: 'flex',
-    flex: 1,
-    justifyContent: 'flex-start',
-    backgroundColor: '#0BC1E7',
-  },
+          <TouchableOpacity
+            style={styles.ButtonContainer}
+            onPress={() => handleSignUp()}
+          >
+            <Text style={styles.buttonText}>Sign Up</Text>
+            <ArrowIcon />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.footerContainer} 
+          onPress={() => 
+            navigate("LoginScreen")}
+            >
+            <Text style={styles.footerButton}>{signIn}</Text>
+          </TouchableOpacity>
+        </View>
+      </KeyboardAvoidingView>
+    );
+  };
 
   title: {
     marginTop: 61,

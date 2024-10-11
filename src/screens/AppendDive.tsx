@@ -1,10 +1,9 @@
 import { auth } from '../firebaseConfig';
-import { HomeNavbar, BottomAddDive, DaveDrawer } from '../components';
+import { HomeNavbar, BottomAddDive } from '../components';
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet } from 'react-native';
 
 export const AppendDive = () => {
-  const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
 
   useEffect(() => {
@@ -18,9 +17,8 @@ export const AppendDive = () => {
 
   return (  
     <View style={styles.container}>
-      {isDrawerOpen && <DaveDrawer />}
       <View style={styles.topPortion}>
-        <HomeNavbar setIsDrawerOpen={setIsDrawerOpen} />
+        <HomeNavbar/>
       <Text style={styles.greetingText}>hello {email.split('@')[0] || 'Guest'}</Text>
       </View>
 
