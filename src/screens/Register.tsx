@@ -56,7 +56,7 @@ export const Register = () => {
 
         <TouchableOpacity
           style={styles.ButtonContainer}
-          onPress={() => navigate("AddDive")}
+          onPress={() => navigate("AppendDive")}
         >
           <Text style={styles.buttonText}>Sign Up</Text>
           <ArrowIcon />

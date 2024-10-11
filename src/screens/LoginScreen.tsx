@@ -63,7 +63,7 @@ export const LoginScreen = () => {
 
       <TouchableOpacity
         style={styles.LoginButtonContainer}
-        onPress={() => navigate("AddDive")}
+        onPress={() => navigate("AppendDive")}
       >
         <Text style={[styles.buttonText]}>Login</Text>
       </TouchableOpacity>
