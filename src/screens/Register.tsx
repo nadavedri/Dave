@@ -26,20 +26,16 @@ export const Register = () => {
   const [secondPassword, setSecondPassword] = useState('');
 
   const handleSignUp = () => {
-    console.log('Email:', email);
-    console.log('Password:', password);
-
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredentials) => {
-        const user = userCredentials.user;
-        console.log('Registered with:', user.email);
-        navigate('AppendDive');
-      })
-      .catch((error) => {
-        console.error('Error during signup:', error); // Detailed logging
-        alert(`Sign up failed: ${error.message}`);
-      });
-  };
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredentials) => {
+          const user = userCredentials.user;
+          navigate("AppendDive");
+        })
+        .catch((error) => {
+          console.error('Error during signup:', error);
+          alert(`Sign up failed: ${error.message}`);
+        });
+    }
 
   return (
     <KeyboardAvoidingView

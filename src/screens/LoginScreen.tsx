@@ -29,17 +29,16 @@ export const LoginScreen = () => {
   }, []);
 
   const handleLogin = () => {
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredentials) => {
-        const user = userCredentials.user;
-        console.log('logged in with:', user.email);
-        navigate('AppendDive');
-      })
-      .catch((error) => {
-        console.error('Error during login:', error);
-        alert(`Log in failed: ${error.message}`);
-      });
-  };
+signInWithEmailAndPassword(auth, email, password)
+.then((userCredentials) => {
+  const user = userCredentials.user;
+  navigate("AppendDive");
+})
+.catch((error) => {
+  console.error('Error during login:', error);
+  alert(`Log in failed: ${error.message}`);
+});
+  }
   return (
     <KeyboardAvoidingView style={styles.container}>
       <Text style={styles.title}>hello!</Text>
