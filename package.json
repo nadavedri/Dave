@@ -7,16 +7,19 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@expo/metro-config": "^0.18.11",
     "@expo/metro-runtime": "^3.2.3",
     "@expo/webpack-config": "^19.0.1",
+    "@react-native-async-storage/async-storage": "^1.23.1",
     "@react-navigation/native": "^6.1.18",
     "@react-navigation/native-stack": "^6.11.0",
     "@tsconfig/react-native": "^3.0.5",
     "expo": "^51.0.37",
+    "firebase": "^10.14.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-native": "^0.74.5",
@@ -30,6 +33,7 @@
   "private": true,
   "devDependencies": {
     "@types/react": "^18.2.79",
-    "@types/react-native": "^0.73.0"
+    "@types/react-native": "^0.73.0",
+    "prettier": "^3.3.3"
   }
 }

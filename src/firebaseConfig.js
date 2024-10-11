@@ -1,24 +1,21 @@
 import { initializeApp } from 'firebase/app';
 
-// Optionally import the services that you want to use
-// import {...} from "firebase/auth";
-// import {...} from "firebase/database";
-// import {...} from "firebase/firestore";
-// import {...} from "firebase/functions";
-// import {...} from "firebase/storage";
+import { initializeAuth, getReactNativePersistence } from 'firebase/auth';
+import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
 
-// Initialize Firebase
 const firebaseConfig = {
-  apiKey: 'api-key',
-  authDomain: 'project-id.firebaseapp.com',
-  databaseURL: 'https://project-id.firebaseio.com',
-  projectId: 'project-id',
-  storageBucket: 'project-id.appspot.com',
-  messagingSenderId: 'sender-id',
-  appId: 'app-id',
-  measurementId: 'G-measurement-id',
+  apiKey: 'AIzaSyAi1Gm_ITK_ZDD6efs1B5YY8WubsS1mM70',
+  authDomain: 'dave-50242.firebaseapp.com',
+  // databaseURL: 'https://project-id.firebaseio.com',
+  projectId: 'dave-50242',
+  storageBucket: 'dave-50242.appspot.com',
+  messagingSenderId: '712270980972',
+  appId: '1:712270980972:web:822f7742a3725870f47549',
+  measurementId: 'G-DGP0YRRHS3',
 };
 
 const app = initializeApp(firebaseConfig);
-// For more information on how to access Firebase in your project,
-// see the Firebase documentation: https://firebase.google.com/docs/web/setup#access-firebase
+
+export const auth = initializeAuth(app, {
+  persistence: getReactNativePersistence(ReactNativeAsyncStorage),
+});

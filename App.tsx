@@ -1,10 +1,10 @@
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
 
-import { Register, LoginScreen, AppendDive } from "./src/screens";
+import { Register, LoginScreen, AppendDive } from './src/screens';
 // import DivingMap from "./src/screens/DivingMap";
-import { PaperProvider } from "react-native-paper";
-import React from "react";
+import { PaperProvider } from 'react-native-paper';
+import React from 'react';
 
 const Stack = createNativeStackNavigator();
 

@@ -1,7 +1,6 @@
 import { HomeNavbar, BottomAddDive } from '../components';
-import React from "react";
+import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
-
 
 export const AppendDive = () => {
   return (
@@ -18,16 +17,16 @@ export const AppendDive = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0BC1E7",
+    backgroundColor: '#0BC1E7',
   },
   topPortion: {
-    height: 200
+    height: 200,
   },
   greetingText: {
     color: 'white',
-    fontWeight: "bold",
+    fontWeight: 'bold',
     fontSize: 18,
     alignSelf: 'center',
-    marginTop: 72
+    marginTop: 72,
   },
 });
