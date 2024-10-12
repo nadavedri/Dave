@@ -11,7 +11,7 @@ import MailIcon from '../../public/icons/mail.svg';
 import PlusPerson from '../../public/icons/plus-person.svg';
 import LockIcon from '../../public/icons/lock.svg';
 import ArrowIcon from '../../public/icons/arrow.svg';
-import { DaveInput } from '../components';
+import DaveInput from '../components/DaveInput';
 import { signIn } from '../consts';
 import { useNavigation } from '@react-navigation/native';
 import { auth } from '../firebaseConfig';
@@ -26,6 +26,9 @@ export const Register = () => {
   const [secondPassword, setSecondPassword] = useState('');
 
   const handleSignUp = () => {
+    console.log('Email:', email);
+    console.log('Password:', password);
+
     createUserWithEmailAndPassword(auth, email, password)
       .then(() => {
         navigate('MainApp');
@@ -46,28 +49,28 @@ export const Register = () => {
       <View style={styles.inputs}>
         <DaveInput
           placeholder="Full Name"
-          onChangeText={(text) => setFulName(text)}
+          onChangeText={(text:string) => setFulName(text)}
           Icon={PlusPerson}
           isSecure={false}
         />
 
         <DaveInput
           placeholder="E-Mail"
-          onChangeText={(text) => setEmail(text)}
+          onChangeText={(text:string) => setEmail(text)}
           Icon={MailIcon}
           isSecure={false}
         />
 
         <DaveInput
           placeholder="Password"
-          onChangeText={(text) => setPassword(text)}
+          onChangeText={(text:string) => setPassword(text)}
           Icon={LockIcon}
           isSecure={true}
         />
 
         <DaveInput
           placeholder="Confirm Password"
-          onChangeText={(text) => setSecondPassword(text)}
+          onChangeText={(text:string) => setSecondPassword(text)}
           Icon={LockIcon}
           isSecure={true}
         />
@@ -90,23 +93,13 @@ export const Register = () => {
   );
 };
 
-          <TouchableOpacity
-            style={styles.ButtonContainer}
-            onPress={() => handleSignUp()}
-          >
-            <Text style={styles.buttonText}>Sign Up</Text>
-            <ArrowIcon />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.footerContainer} 
-          onPress={() => 
-            navigate("LoginScreen")}
-            >
-            <Text style={styles.footerButton}>{signIn}</Text>
-          </TouchableOpacity>
-        </View>
-      </KeyboardAvoidingView>
-    );
-  };
+const styles = StyleSheet.create({
+  container: {
+    display: 'flex',
+    flex: 1,
+    justifyContent: 'flex-start',
+    backgroundColor: '#0BC1E7',
+  },
 
   title: {
     marginTop: 61,
