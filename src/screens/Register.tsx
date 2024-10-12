@@ -49,28 +49,28 @@ export const Register = () => {
       <View style={styles.inputs}>
         <DaveInput
           placeholder="Full Name"
-          onChangeText={(text:string) => setFulName(text)}
+          onChangeText={(text: string) => setFulName(text)}
           Icon={PlusPerson}
           isSecure={false}
         />
 
         <DaveInput
           placeholder="E-Mail"
-          onChangeText={(text:string) => setEmail(text)}
+          onChangeText={(text: string) => setEmail(text)}
           Icon={MailIcon}
           isSecure={false}
         />
 
         <DaveInput
           placeholder="Password"
-          onChangeText={(text:string) => setPassword(text)}
+          onChangeText={(text: string) => setPassword(text)}
           Icon={LockIcon}
           isSecure={true}
         />
 
         <DaveInput
           placeholder="Confirm Password"
-          onChangeText={(text:string) => setSecondPassword(text)}
+          onChangeText={(text: string) => setSecondPassword(text)}
           Icon={LockIcon}
           isSecure={true}
         />

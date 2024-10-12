@@ -14,7 +14,14 @@ export type DaveInputProp = {
   isSecure?: boolean;
 };
 
-export const DaveInput = ({ placeholder, value, onChangeText,Icon, iconSize = 20, isSecure }:DaveInputProp) => {
+export const DaveInput = ({
+  placeholder,
+  value,
+  onChangeText,
+  Icon,
+  iconSize = 20,
+  isSecure,
+}: DaveInputProp) => {
   const [isHidden, setIsHidden] = useState(isSecure);
 
   const toggleHidden = useCallback(() => {
