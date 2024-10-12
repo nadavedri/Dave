@@ -1,3 +1,9 @@
 node_modules
 build
 dist
+RNfontsNative
+scripts
+hooks
+constants
+pubic
+.expo

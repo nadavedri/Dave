@@ -6,15 +6,15 @@ import {
   Text,
   View,
   Platform,
-} from "react-native";
-import MailIcon from "../../public/icons/mail.svg";
-import PlusPerson from "../../public/icons/plus-person.svg";
-import LockIcon from "../../public/icons/lock.svg";
-import ArrowIcon from "../../public/icons/arrow.svg";
-import {DaveInput} from "../components";
-import { signIn } from "../consts";
-// import { useNavigation } from "@react-navigation/native";
-import { auth } from "../firebaseConfig";
+} from 'react-native';
+import MailIcon from '../../public/icons/mail.svg';
+import PlusPerson from '../../public/icons/plus-person.svg';
+import LockIcon from '../../public/icons/lock.svg';
+import ArrowIcon from '../../public/icons/arrow.svg';
+import { DaveInput } from '../components';
+import { signIn } from '../consts';
+import { useNavigation } from '@react-navigation/native';
+import { auth } from '../firebaseConfig';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 export const Register = () => {
@@ -26,16 +26,15 @@ export const Register = () => {
   const [secondPassword, setSecondPassword] = useState('');
 
   const handleSignUp = () => {
-      createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredentials) => {
-          const user = userCredentials.user;
-          navigate("AppendDive");
-        })
-        .catch((error) => {
-          console.error('Error during signup:', error);
-          alert(`Sign up failed: ${error.message}`);
-        });
-    }
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        navigate('MainApp');
+      })
+      .catch((error) => {
+        console.error('Error during signup:', error);
+        alert(`Sign up failed: ${error.message}`);
+      });
+  };
 
   return (
     <KeyboardAvoidingView

@@ -1,10 +1,16 @@
-import React, { useEffect, useState } from 'react'
-import { KeyboardAvoidingView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import {DaveInput} from '../components'
-import { signUp } from '../consts'
-import MailIcon from '../../public/icons/mail.svg'
-import LockIcon from '../../public/icons/lock.svg'
-import { useNavigation } from '@react-navigation/native'
+import React, { useEffect, useState } from 'react';
+import {
+  KeyboardAvoidingView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import { DaveInput } from '../components';
+import { signUp } from '../consts';
+import MailIcon from '../../public/icons/mail.svg';
+import LockIcon from '../../public/icons/lock.svg';
+import { useNavigation } from '@react-navigation/native';
 import { auth } from '../firebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
@@ -23,16 +29,15 @@ export const LoginScreen = () => {
   }, []);
 
   const handleLogin = () => {
-signInWithEmailAndPassword(auth, email, password)
-.then((userCredentials) => {
-  const user = userCredentials.user;
-  navigate("AppendDive");
-})
-.catch((error) => {
-  console.error('Error during login:', error);
-  alert(`Log in failed: ${error.message}`);
-});
-  }
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        navigate('MainApp');
+      })
+      .catch((error) => {
+        console.error('Error during login:', error);
+        alert(`Log in failed: ${error.message}`);
+      });
+  };
   return (
     <KeyboardAvoidingView style={styles.container}>
       <Text style={styles.title}>hello!</Text>

@@ -1,17 +1,15 @@
 import React from 'react';
 import { Appbar, IconButton } from 'react-native-paper';
 import { View, StyleSheet, Image } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import DaveLogo from '../assets/icons/davelogo.png';
 
 export const HomeNavbar = () => {
-
   return (
     <Appbar.Header style={styles.navbar}>
       <IconButton
         icon="menu"
         size={30}
-        onPress={() => alert("pressed burger")} // No argument passed to onPress
+        onPress={() => alert('pressed burger')} // No argument passed to onPress
         iconColor="white"
         style={styles.icon}
       />
