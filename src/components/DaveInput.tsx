@@ -14,7 +14,7 @@ export type DaveInputProp = {
   isSecure?: boolean;
 };
 
-const DaveInput = ({
+export const DaveInput = ({
   placeholder,
   value,
   onChangeText,
@@ -56,8 +56,6 @@ const DaveInput = ({
     </View>
   );
 };
-
-export default DaveInput;
 const styles = StyleSheet.create({
   viewContainer: {
     display: 'flex',

@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import DaveInput from '../components/DaveInput';
+import { DaveInput } from '../components';
 import { signUp } from '../consts';
 import MailIcon from '../../public/icons/mail.svg';
 import LockIcon from '../../public/icons/lock.svg';
@@ -30,10 +30,8 @@ export const LoginScreen = () => {
 
   const handleLogin = () => {
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredentials) => {
-        const user = userCredentials.user;
-        console.log('logged in with:', user.email);
-        navigate('AppendDive');
+      .then(() => {
+        navigate('MainApp');
       })
       .catch((error) => {
         console.error('Error during login:', error);

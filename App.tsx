@@ -1,10 +1,10 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NavigationContainer } from '@react-navigation/native';
-
-import { Register, LoginScreen, AppendDive } from './src/screens';
-// import DivingMap from "./src/screens/DivingMap";
-import { PaperProvider } from 'react-native-paper';
 import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import { Register, LoginScreen } from './src/screens';
+import { PaperProvider } from 'react-native-paper';
+import { DrawerNavigator } from './src/navigators';
 
 const Stack = createNativeStackNavigator();
 
@@ -15,8 +15,7 @@ export const App = () => {
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="LoginScreen" component={LoginScreen} />
           <Stack.Screen name="Register" component={Register} />
-          <Stack.Screen name="AppendDive" component={AppendDive} />
-          {/* <Stack.Screen name="MapScreen" component={DivingMap} /> */}
+          <Stack.Screen name="MainApp" component={DrawerNavigator} />
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>

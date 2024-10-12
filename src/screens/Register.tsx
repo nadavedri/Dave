@@ -30,13 +30,11 @@ export const Register = () => {
     console.log('Password:', password);
 
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredentials) => {
-        const user = userCredentials.user;
-        console.log('Registered with:', user.email);
-        navigate('AppendDive');
+      .then(() => {
+        navigate('MainApp');
       })
       .catch((error) => {
-        console.error('Error during signup:', error); // Detailed logging
+        console.error('Error during signup:', error);
         alert(`Sign up failed: ${error.message}`);
       });
   };
@@ -51,28 +49,28 @@ export const Register = () => {
       <View style={styles.inputs}>
         <DaveInput
           placeholder="Full Name"
-          onChangeText={(text) => setFulName(text)}
+          onChangeText={(text: string) => setFulName(text)}
           Icon={PlusPerson}
           isSecure={false}
         />
 
         <DaveInput
           placeholder="E-Mail"
-          onChangeText={(text) => setEmail(text)}
+          onChangeText={(text: string) => setEmail(text)}
           Icon={MailIcon}
           isSecure={false}
         />
 
         <DaveInput
           placeholder="Password"
-          onChangeText={(text) => setPassword(text)}
+          onChangeText={(text: string) => setPassword(text)}
           Icon={LockIcon}
           isSecure={true}
         />
 
         <DaveInput
           placeholder="Confirm Password"
-          onChangeText={(text) => setSecondPassword(text)}
+          onChangeText={(text: string) => setSecondPassword(text)}
           Icon={LockIcon}
           isSecure={true}
         />
