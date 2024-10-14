@@ -1,4 +1,4 @@
-import { auth } from '../firebaseConfig';
+import { auth } from '../config/firebaseConfig';
 import { BottomAddDive } from '../components';
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
