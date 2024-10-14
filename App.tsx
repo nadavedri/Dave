@@ -8,17 +8,16 @@ import { ThemeProvider, useThemeContext } from "./src/ThemeContext";
 
 const Stack = createNativeStackNavigator();
 
-export const App = () => {
-  const { isDarkTheme } = useThemeContext();
+const MainApp = () => {
+  const { isDarkTheme } = useThemeContext(); // Now this is inside the ThemeProvider context
 
   const combinedTheme = isDarkTheme
     ? { ...MD3DarkTheme, ...NavigationDarkTheme }
     : { ...MD3LightTheme, ...DefaultTheme };
-  return (
-    <ThemeProvider>
 
-<PaperProvider theme={combinedTheme}>
-<NavigationContainer theme={combinedTheme}>
+  return (
+    <PaperProvider theme={combinedTheme}>
+      <NavigationContainer theme={combinedTheme}>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="LoginScreen" component={LoginScreen} />
           <Stack.Screen name="Register" component={Register} />
@@ -26,7 +25,15 @@ export const App = () => {
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>
+  );
+};
+
+export const App = () => {
+  return (
+    <ThemeProvider>
+      <MainApp />
     </ThemeProvider>
   );
 };
+
 export default App;
