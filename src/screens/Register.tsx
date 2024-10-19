@@ -11,14 +11,14 @@ import MailIcon from '../../public/icons/mail.svg';
 import PlusPerson from '../../public/icons/plus-person.svg';
 import LockIcon from '../../public/icons/lock.svg';
 import ArrowIcon from '../../public/icons/arrow.svg';
-import DaveInput from '../components/DaveInput';
-import { signIn } from '../consts';
+import {DaveInput} from '../components';
 import { useNavigation } from '@react-navigation/native';
 import { auth } from '../firebaseConfig';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { ScreenNavigation, Screens, signIn } from '../../constants';
 
 export const Register = () => {
-  const { navigate } = useNavigation();
+  const { navigate } = useNavigation<ScreenNavigation>();
   const [fulName, setFulName] = useState('');
 
   const [email, setEmail] = useState('');
@@ -31,7 +31,7 @@ export const Register = () => {
 
     createUserWithEmailAndPassword(auth, email, password)
       .then(() => {
-        navigate('MainApp');
+        navigate(Screens.Home);
       })
       .catch((error) => {
         console.error('Error during signup:', error);
@@ -84,7 +84,7 @@ export const Register = () => {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.footerContainer}
-          onPress={() => navigate('LoginScreen')}
+          onPress={() => navigate(Screens.Login)}
         >
           <Text style={styles.footerButton}>{signIn}</Text>
         </TouchableOpacity>

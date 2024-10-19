@@ -7,17 +7,17 @@ import {
   View,
 } from 'react-native';
 import { DaveInput } from '../components';
-import { signUp } from '../consts';
 import MailIcon from '../../public/icons/mail.svg';
 import LockIcon from '../../public/icons/lock.svg';
 import { useNavigation } from '@react-navigation/native';
 import { auth } from '../firebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { ScreenNavigation, Screens, signUp } from '../../constants';
 
 export const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { navigate } = useNavigation();
+  const { navigate } = useNavigation<ScreenNavigation>();
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user: any) => {
@@ -31,7 +31,7 @@ export const LoginScreen = () => {
   const handleLogin = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
-        navigate('MainApp');
+        navigate('Login');
       })
       .catch((error) => {
         console.error('Error during login:', error);
