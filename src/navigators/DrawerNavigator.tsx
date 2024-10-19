@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppendDive, DivingMap } from '../screens';
+import { AddDive, DivingMap } from '../screens';
 import DaveLogo from '../assets/icons/davelogo.png';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { IconButton } from 'react-native-paper';
@@ -11,7 +11,7 @@ const Drawer = createDrawerNavigator();
 export const DrawerNavigator = () => {
   return (
     <Drawer.Navigator
-      initialRouteName="AppendDive"
+      initialRouteName="AddDive"
       screenOptions={{
         headerShown: true,
         headerStyle: {
@@ -47,7 +47,7 @@ export const DrawerNavigator = () => {
         ),
       }}
     >
-      <Drawer.Screen name="AppendDive" component={AppendDive} />
+      <Drawer.Screen name="AddDive" component={AddDive} />
       <Drawer.Screen name="DivingMap" component={DivingMap} />
     </Drawer.Navigator>
   );

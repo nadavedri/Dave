@@ -1,17 +1,18 @@
 import { auth } from '../firebaseConfig';
-import { BottomAddDive } from '../components';
+import { BottomAddDive, HomeNavbar } from '../components';
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-export const AppendDive = () => {
-  const [email, setEmail] = useState<string>('');
+export const AddDive = () => {
+  const [displayName, setDisaplayName] = useState<string>("Guest");
 
   useEffect(() => {
     const user = auth.currentUser;
-    if (user && user.email) {
-      setEmail(user.email);
+    if (user && user.displayName) {
+      setDisaplayName(user.displayName);
     } else {
-      console.log('No user is signed in');
+      console.log('No user is signed in'); // needs logs here 
     }
   }, []);
 
@@ -19,9 +20,7 @@ export const AppendDive = () => {
     <View style={styles.container}>
       <View style={styles.topPortion}>
         {/* <HomeNavbar /> */}
-        <Text style={styles.greetingText}>
-          hello {email.split('@')[0] || 'Guest'}
-        </Text>
+        <Text style={styles.greetingText}>hello {displayName}</Text>
       </View>
 
       <BottomAddDive />
