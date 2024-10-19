@@ -28,7 +28,7 @@ import {
 
 export const SignUp = () => {
   const { navigate } = useNavigation<ScreenNavigation>();
-  const [fulName, setFulName] = useState('');
+  const [firstName, setFirstName] = useState('');
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -44,7 +44,7 @@ export const SignUp = () => {
       const user = userCredential.user;
 
       await updateProfile(user, {
-        displayName: fulName.split(' ')[0],
+        displayName: firstName,
       });
       navigate(Screens.Home);
       console.log('User created and additional info stored');
@@ -63,8 +63,8 @@ export const SignUp = () => {
         <Text style={styles.title}>{CREATE_ACCOUNT}</Text>
         <View style={styles.inputs}>
           <DaveInput
-            placeholder="Full Name"
-            onChangeText={(text: string) => setFulName(text)}
+            placeholder="First Name"
+            onChangeText={(text: string) => setFirstName(text)}
             Icon={PlusPerson}
             isSecure={false}
           />
