@@ -13,7 +13,7 @@ import LockIcon from '../../public/icons/lock.svg';
 import { useNavigation } from '@react-navigation/native';
 import { auth } from '../firebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { ScreenNavigation, Screens, SIGN_UP, SIGN_UP_MESSAGE, } from '../../constants';
+import { ScreenNavigation, Screens, SIGN_UP_MESSAGE, } from '../../constants';
 
 export const Login = () => {
   const [email, setEmail] = useState('');
