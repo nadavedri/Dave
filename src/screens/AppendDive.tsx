@@ -1,7 +1,8 @@
-import { auth } from '../firebaseConfig';
+import { auth } from '../config/firebaseConfig';
 import { BottomAddDive } from '../components';
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import { ThemedText } from '../components/index';
 
 export const AppendDive = () => {
   const [email, setEmail] = useState<string>('');
@@ -18,10 +19,9 @@ export const AppendDive = () => {
   return (
     <View style={styles.container}>
       <View style={styles.topPortion}>
-        {/* <HomeNavbar /> */}
-        <Text style={styles.greetingText}>
+        <ThemedText style={styles.greetingText}>
           hello {email.split('@')[0] || 'Guest'}
-        </Text>
+        </ThemedText>
       </View>
 
       <BottomAddDive />
@@ -32,13 +32,11 @@ export const AppendDive = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0BC1E7',
   },
   topPortion: {
     height: 200,
   },
   greetingText: {
-    color: 'white',
     fontWeight: 'bold',
     fontSize: 18,
     alignSelf: 'center',

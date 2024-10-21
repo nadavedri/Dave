@@ -11,10 +11,10 @@ import MailIcon from '../../public/icons/mail.svg';
 import PlusPerson from '../../public/icons/plus-person.svg';
 import LockIcon from '../../public/icons/lock.svg';
 import ArrowIcon from '../../public/icons/arrow.svg';
-import DaveInput from '../components/DaveInput';
-import { signIn } from '../consts';
+import { DaveInput } from '../components';
+import { signIn } from '../config/consts';
 import { useNavigation } from '@react-navigation/native';
-import { auth } from '../firebaseConfig';
+import { auth } from '../config/firebaseConfig';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 export const Register = () => {

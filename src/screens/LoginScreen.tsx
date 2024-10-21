@@ -7,11 +7,11 @@ import {
   View,
 } from 'react-native';
 import { DaveInput } from '../components';
-import { signUp } from '../consts';
+import { signUp } from '../config/consts';
 import MailIcon from '../../public/icons/mail.svg';
 import LockIcon from '../../public/icons/lock.svg';
 import { useNavigation } from '@react-navigation/native';
-import { auth } from '../firebaseConfig';
+import { auth } from '../config/firebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
 export const LoginScreen = () => {

@@ -5,7 +5,9 @@ import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { markers } from '../assets/marker';
 
 export const DivingMap = () => {
-  const [location, setLocation] = useState<Location.LocationObject | null>(null);
+  const [location, setLocation] = useState<Location.LocationObject | null>(
+    null
+  );
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   useEffect(() => {
@@ -16,36 +18,40 @@ export const DivingMap = () => {
         return;
       }
       const location = await Location.getCurrentPositionAsync({});
-      setLocation(location); 
+      setLocation(location);
     })();
   }, []);
   const onMarkerSelected = (marker: any) => {
-		Alert.alert(marker.name);
-	};
+    Alert.alert(marker.name);
+  };
 
-	const calloutPressed = (ev: any) => {
-		console.log(ev);
-	};
+  const calloutPressed = (ev: any) => {
+    console.log(ev);
+  };
 
-	const onRegionChange = (region: Region) => {
-		console.log(region);
-	};
+  const onRegionChange = (region: Region) => {
+    console.log(region);
+  };
 
   return (
     <MapView
-        style={{ flex: 1 }}
-        initialRegion={{
-          latitude: 37.78825,
-          longitude: -122.4324,
-        }}
-        region={location ? {
-          latitude: location.coords.latitude,
-          longitude: location.coords.longitude,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        } : undefined}
-        onRegionChangeComplete={onRegionChange}
-      >
+      style={{ flex: 1 }}
+      initialRegion={{
+        latitude: 37.78825,
+        longitude: -122.4324,
+      }}
+      region={
+        location
+          ? {
+              latitude: location.coords.latitude,
+              longitude: location.coords.longitude,
+              latitudeDelta: 0.0922,
+              longitudeDelta: 0.0421,
+            }
+          : undefined
+      }
+      onRegionChangeComplete={onRegionChange}
+    >
       {location && (
         <Marker
           coordinate={{
@@ -57,19 +63,19 @@ export const DivingMap = () => {
         />
       )}
       {markers.map((marker, index) => (
-					<Marker
-						key={index}
-						title={marker.name}
-						coordinate={marker}
-						onPress={() => onMarkerSelected(marker)}
-					>
-						<Callout onPress={calloutPressed}>
-							<View style={{ padding: 10 }}>
-								<Text style={{ fontSize: 24 }}>Hello</Text>
-							</View>
-						</Callout>
-					</Marker>
-				))}
+        <Marker
+          key={index}
+          title={marker.name}
+          coordinate={marker}
+          onPress={() => onMarkerSelected(marker)}
+        >
+          <Callout onPress={calloutPressed}>
+            <View style={{ padding: 10 }}>
+              <Text style={{ fontSize: 24 }}>Hello</Text>
+            </View>
+          </Callout>
+        </Marker>
+      ))}
     </MapView>
   );
 };
